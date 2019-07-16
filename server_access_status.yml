@@ -1,0 +1,11 @@
+---
+- gather_facts: false
+  hosts: all
+  roles: [server-access]
+  vars: null
+  vars_files: [server-access/vars/main.yml]
+
+  
+
+
+       
