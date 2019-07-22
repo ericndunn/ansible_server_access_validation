@@ -74,7 +74,7 @@ pipeline {
             wrap([$class: 'AnsiColorBuildWrapper', colorMapName: "xterm"]) {
                     echo 'Validate Access'
                     //sh 'ansible-playbook -i dev-servers site.yml'
-                    ansiblePlaybook credentialsId: '62c93b86-c4ba-483c-a696-8180694ce559',
+                    ansiblePlaybook credentialsId: 'AG19884_PK',
                     installation: 'ansible', 
                     inventory: '/Users/${MY_USERID}/${INV_FILE}',
                     limit: '${INV_GRP}',
