@@ -4,9 +4,9 @@
 - include_tasks: user_access_verify.yml
   #when: ansible_os_family == "RedHat"
 
-- include_tasks: python_verify.yml
+#- include_tasks: python_verify.yml
   #when: ansible_os_family == "RedHat"
 
-- include_tasks: user_analyze.yml
+#- include_tasks: user_analyze.yml
   #when: ansible_os_family == "RedHat"  
 
