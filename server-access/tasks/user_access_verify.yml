@@ -7,12 +7,13 @@
   ignore_errors: yes
   register: servergroups
 
-- debug:
-    msg: "{{ servergroups.stdout_lines }}"
+- name: "DEBUG: Verify Access status of Inventory Hostnames"
+  debug:
+    msg: "{{ servergroups }}"
 
-- name: "Output Information to {{ jenkinsws }}/OUT_{{ lookup('pipe','date +%Y%m%d') }}_{{ build_id }}.csv"
+- name: "Output Information to {{ jenkinsws }}OUT_{{ date_time }}.csv"
   lineinfile:
-    dest: "{{ jenkinsws }}/OUT_{{ lookup('pipe','date +%Y%m%d') }}_{{ build_id }}.csv"
+    dest: "{{ jenkinsws }}/OUT_{{ date_time }}.csv"
     line: "{{ inventory_hostname }},{{ servergroups.stdout_lines | regex_replace('\\[|u(?!sers)|\\]', '') }}"
     create: true
     state: present
@@ -20,14 +21,14 @@
 
 - name: Remove single quotes
   replace:
-    path: "{{ jenkinsws }}/OUT_{{ lookup('pipe','date +%Y%m%d') }}_{{ build_id }}.csv"
+    path: "{{ jenkinsws }}/OUT_{{ date_time }}.csv"
     regexp: "'"
     replace: ""
   delegate_to: localhost
 
 - name: Replace comma-space with comma.
   replace:
-    path: "{{ jenkinsws }}/OUT_{{ lookup('pipe','date +%Y%m%d') }}_{{ build_id }}.csv"
+    path: "{{ jenkinsws }}/OUT_{{ date_time }}.csv"
     regexp: ", "
     replace: ","
   delegate_to: localhost
