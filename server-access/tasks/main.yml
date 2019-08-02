@@ -1,6 +1,10 @@
 ---
 # tasks file for server-access
 
+- set_fact:
+   random_number: "{{ 100 | random }}"
+ run_once: yes
+
 - include_tasks: user_access_verify.yml
   #when: ansible_os_family == "RedHat"
 

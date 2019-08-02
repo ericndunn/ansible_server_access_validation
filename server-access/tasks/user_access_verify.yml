@@ -11,9 +11,9 @@
   debug:
     msg: "{{ servergroups }}"
 
-- name: "Output Information to {{ jenkinsws }}OUT_{{ date_time }}.csv"
+- name: "Output Information to {{ jenkinsws }}OUT_{{ date_time }}_{{ random_number }}.csv"
   lineinfile:
-    dest: "{{ jenkinsws }}/OUT_{{ date_time }}.csv"
+    dest: "{{ jenkinsws }}/OUT_{{ date_time }}_{{ random_number }}.csv"
     line: "{{ inventory_hostname }},{{ servergroups.stdout_lines | regex_replace('\\[|u(?!sers)|\\]', '') }}"
     create: true
     state: present
@@ -21,14 +21,14 @@
 
 - name: Remove single quotes
   replace:
-    path: "{{ jenkinsws }}/OUT_{{ date_time }}.csv"
+    path: "{{ jenkinsws }}/OUT_{{ date_time }}_{{ random_number }}.csv"
     regexp: "'"
     replace: ""
   delegate_to: localhost
 
 - name: Replace comma-space with comma.
   replace:
-    path: "{{ jenkinsws }}/OUT_{{ date_time }}.csv"
+    path: "{{ jenkinsws }}/OUT_{{ date_time }}_{{ random_number }}.csv"
     regexp: ", "
     replace: ","
   delegate_to: localhost
