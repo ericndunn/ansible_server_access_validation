@@ -4,4 +4,4 @@ jenkinsws: ./
 build_id: UsedInJenkins_ChangeIfNecessary
 get_ip: /sbin/ip route get 1 | awk '{print $NF;exit}'
 # YearMonthDay_HourMinute
-date_time: "{{ lookup('pipe','date +%Y%m%d_%H%M') }}"
+date_time: "{{ lookup('pipe','date +%Y%m%d) }}"
